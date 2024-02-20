@@ -1,0 +1,32 @@
+use("platzi_store")
+
+db.orders.insertOne({
+    user_id: ObjectId( "65d33f09950133636ad5f881" ),
+    date: "2024-02-19",
+    items: [ 
+        {
+            name: "Camiseta",
+            price: 120,
+            qty: 1
+        },
+        {
+            name: "Pantalon",
+            price: 180,
+            qty: 2
+        },
+    ]
+})
+
+//* Agregamos una nueva orden de compra al mismo user ("ObjectId")
+
+db.orders.insertOne({
+    user_id: ObjectId( "65d33f09950133636ad5f881" ),
+    date: "2024-02-19",
+    items: [ 
+        {
+            name: "Remera",
+            price: 100,
+            qty: 3
+        },
+    ]
+})

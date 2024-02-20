@@ -1,0 +1,20 @@
+use("platzi_store")
+
+db.products.find()
+db.stores.find()
+
+// 65d3fe7c16f692f70c20a552 > product 1
+// 65d4009bac0b1de9e3faf464 > store 1
+
+db.products.aggregate([
+    {
+        $lookup: {
+            from: "stores",
+            localField: "stores_ids",  // Gracias al aggregation framework va a detectar que "products_ids"
+            foreignField: "_id",         // es un array, por ende lo mapea como array y busca las referecias
+            as: "stores"
+        }
+    }
+])
+
+//* Cada vez que tengamos una referecia muchos a muchos hay que ir por la forma referenciada

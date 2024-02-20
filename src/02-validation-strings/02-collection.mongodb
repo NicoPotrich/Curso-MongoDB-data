@@ -1,0 +1,52 @@
+use("platzi_store")
+/* 
+db.createCollection('users', {
+    validator: {
+        $jsonSchema: {
+            bsonType: 'object',
+            properties: {
+                name: {
+                    bsonType: 'string'
+                },
+                email: {
+                    bsonType: 'string'
+                },
+            }
+        }
+    }
+})
+ */
+
+db.createCollection('users', {
+    validator: {
+        $jsonSchema: {
+            bsonType: 'object',
+            required: ['email', 'password'],  // "required" sirve para decir que campos son obligatorios al momento de hacer los "inserts" 
+            properties: {
+                name: {
+                    bsonType: 'string'
+                },
+                last_name: {
+                    bsonType: 'string'
+                },
+                email: {
+                    bsonType: 'string'
+                },
+                password: {
+                    bsonType: 'string'
+                },
+            }
+        }
+    }
+})
+
+
+
+
+
+
+
+
+
+
+

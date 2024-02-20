@@ -1,0 +1,18 @@
+use("platzi_store")
+
+db.users.insertOne({
+    email: 'martin@perez.com.ar',
+    password: 'AvfR43FVSA3k',
+    role: 'customer',
+    social_accounts: ['twitter', 'instagram'],
+    address: {
+        street: 'st 2423',
+        city: 'Bs As',
+        zip: '2543'
+    },
+    shipping_address: {
+        street: 'st 5463',
+        city: 'Bs As',
+        zip: '10216'
+    }
+})

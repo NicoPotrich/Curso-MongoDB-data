@@ -1,0 +1,17 @@
+use("platzi_store")
+db.users.find()
+
+db.users.find({
+    "address.city": "Bs As"
+})
+
+
+
+
+
+
+
+
+
+
+

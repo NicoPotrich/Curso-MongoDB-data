@@ -1,0 +1,20 @@
+use("platzi_store")
+
+db.products.find()
+db.stores.find()
+
+db.stores.aggregate([
+    {
+        $lookup: {
+            from: "products",
+            localField: "products_ids",  // Gracias al aggregation framework va a detectar que "products_ids"
+            foreignField: "_id",         // es un array, por ende lo mapea como array y busca las referecias
+            as: "products"
+        }
+    }
+])
+
+
+
+
+

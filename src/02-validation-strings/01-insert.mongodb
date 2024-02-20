@@ -1,0 +1,34 @@
+use("platzi_store")
+
+db.users.insertOne({
+    last_name: 'Potrich',
+    email: 12
+})  //* Este insert es valido gracias a la flexibilidad de mongo pero no son datos correctos para un usuario.
+    //* Un usuario deberia permitir un password y no deberia permitir que un email sea un numero por ejemplo.
+
+//* Para la validacion de estos datos creamos el archivo collection.mongodb
+
+
+//* Luego de crear la coleccion con las validaciones en el archivo "collection.mongodb", borramos la coleccion que 
+//* habiamos creado arriba y volvemos a ejecutar el mismo "insert". Ahora no tira un error porque no esta aceptando
+//* numeros en el campo "email". A continacion corregimos en insert y volvemos a ejecutar la consulta.
+
+db.users.insertOne({
+    last_name: 'Potrich',
+    email: "nicolas@potrich.com.ar"
+}) 
+
+//* Ahora se inserto correctamente pero que paso con el "name" que habiamos declarado en la collecion?
+//* Como no le enviamos el nombre explicitamente en el insert, lo va a ejecutar sin problemas pero si  
+//* queremos agregarle un "name" con otro dato que no sea un string nos va a tirar un error.
+
+db.users.insertOne({
+    last_name: 'Potrich',
+    email: "nicolas@potrich.com.ar",
+    password: "----"
+}) 
+
+//* Para pedir que sirtos campos sean obligatorios debemos agregar la propiedad "required" al momento de crear la coleccion.
+
+
+

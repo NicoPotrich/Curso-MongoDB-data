@@ -1,0 +1,8 @@
+use("platzi_store")
+
+
+db.users.insertOne({
+    email: 'nicolas@potrich.com.ar',
+    password: 'AvfR43FVSA3k',
+    role: 'admin'
+})

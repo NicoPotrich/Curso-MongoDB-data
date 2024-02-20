@@ -1,0 +1,25 @@
+use("platzi_store")
+
+db.users.find()
+db.orders.find()
+
+db.orders.find({ user_id: ObjectId("65d33f8a4600cffc79a93ad9") })
+
+db.orders.find({ user_id: ObjectId("65d33f09950133636ad5f881") })
+db.users.findOne({ _id: ObjectId('65d33f09950133636ad5f881') })
+
+db.orders.aggregate([  // aggregate hace parte del aggregation framework de Mongo que es diferente al query languaje normal
+    {
+        $match: {
+            _id: ObjectId("65d3cd4e8687fc6c5d705ae5")  // id de la orden de compra.
+        }
+    },
+    {
+        $lookup: {
+            from: "users",
+            localField: "user_id",
+            foreignField: "_id",
+            as: "user"
+        }
+    }
+])

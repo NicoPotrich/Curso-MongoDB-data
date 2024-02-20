@@ -1,0 +1,60 @@
+use("platzi_store")
+
+db.getCollectionInfos()  // Este comando sirve para que nos muestre todas las colecciones que hay creadas en una base de datos
+
+
+db.runCommand({       // "runCommand" nos permite cambiar el "validator" con su "jsonSchema"
+    collMod: "users", // sin tener que hacer "drop" y volver a ejecutar la coleccion.
+    //* Hay de enviar todo el "validator", aunque querramos cambiar solo un atributo, porque Mongo va a sobreescribir todo.
+    validator: {
+        $jsonSchema: {
+            bsonType: 'object',
+            required: ['email', 'password', 'role'],  
+            additionalProperties: true,  // Cambiamos a "True" para no perder la flexibilidad de Mongo
+            properties: {
+                name: {
+                    bsonType: 'string'
+                },
+                last_name: {
+                    bsonType: 'string'
+                },
+                email: {
+                    bsonType: 'string'
+                },
+                password: {
+                    bsonType: 'string',
+                    pattern: '^[A-Za-z0-9]{8,}$'
+                },
+                age: {
+                    bsonType: 'number',
+                    minimum: 18,
+                    maximum: 99
+                },
+                isSingle: {
+                    bsonType: 'bool'
+                },
+                role: {
+                    enum: ['customer', 'seller', 'admin'] 
+                }
+            }
+        }
+    }
+})
+
+//* Cuando ejecutamos esta consulta no nos dejo por un tema de permisos del usuario. Para poder agregarle permisos al usuario
+//* lo tenemos que hacer desde la Web. Estando en la base de datos vamos a la parte de SECURITY => Database Access => edit => Built-in Role
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
